@@ -57,7 +57,7 @@ public class ProductInfo(By locator) : BaseProductInfo(locator)
     /// <summary>
     /// Add the product to the basket.
     /// </summary>
-    public void AddToCart() => AddToCartButton.Click();
+    public void AddToCart() => AddToCartButton.ScrollToAndClick();
 
     /// <summary>
     /// Navigate back to the shop page.

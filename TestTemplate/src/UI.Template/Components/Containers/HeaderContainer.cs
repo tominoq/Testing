@@ -9,7 +9,7 @@ public class HeaderContainer : BaseComponent
 {
     private readonly Simple OpenBasketButton = new(By.XPath("//*[@class='cart-widget']"));
     private readonly Simple BasketCount = new(By.XPath("//*[@class='cart-count']"));
-    private readonly Simple BasketContainer = new(By.XPath("//div[@class='cart-view']"));
+    private readonly Simple BasketContainer = new(By.XPath("//div[@class='cart-panel']"));
     private readonly Button ClearBasketButton = new(By.XPath("//button[@class='clear-cart']"));
     private readonly Button CloseBasketButton = new(By.XPath("//button[@class='close-cart']"));
     private readonly Simple Title = new(By.XPath("//h1[@class='shop-title']"));
