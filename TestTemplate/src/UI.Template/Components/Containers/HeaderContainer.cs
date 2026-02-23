@@ -118,4 +118,19 @@ public class HeaderContainer : BaseComponent
         WebDriver.WaitForUrlChanged(() => Title.Click());
         return new AdminPage();
     }
+
+    private readonly Button CheckoutButton = new(By.XPath("//button[@class='checkout-button']"));
+    public Pages.CheckoutPage GoToCheckout()
+    {
+        CheckoutButton.ScrollToAndClick();
+        Pages.CheckoutPage checkoutPage = new();
+        checkoutPage.WaitForReady();
+        return checkoutPage;
+    }
+
+    public void ClearBasket()
+    {
+            ClearBasketButton.Click();
+            Wait.Until(_ => GetBasketCount() == 0);
+    }
 }

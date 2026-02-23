@@ -1,4 +1,5 @@
 using NUnit.Framework.Internal;
+using OpenQA.Selenium.Support.UI;
 using UI.Template.Data;
 using UI.Template.Models;
 using UI.Template.Pages;
@@ -37,11 +38,10 @@ public class AddProductTest : BaseTest
 
         //** STEP 4 ***/ - Open eshop home page
         HomePage homePage = adminPage.GoToEshopHome();
-        homePage.WaitForReady();
-        System.Threading.Thread.Sleep(3000); // Wait for the home page to load TEMPORARY
+        Thread.Sleep(500); // Wait for the home page to load
 
         //** STEP 5 ***/ - Open the new product from the cameras category and verify the product details
-        ProductDetailPage productDetail = homePage.OpenProductByNameFromCategory(TestData.NewProduct.ProductCategory, TestData.NewProduct.ProductName);
+        ProductDetailPage productDetail = homePage.OpenProductByNameFromCategory(TestData.NewProduct.ProductCategory, TestData.NewProduct.ProductName);     
         productDetail.WaitForReady();
         Product productFromDetail = productDetail.ProductInfoForm.ToProductModel();
 
