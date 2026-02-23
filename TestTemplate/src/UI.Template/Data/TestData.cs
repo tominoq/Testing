@@ -16,4 +16,14 @@ public static class TestData
         ProductCategory = "Accessories",
         ProductName = "Gaming Keyboard RGB"
     };
+
+    public static TestProduct NewProduct { get; } = new TestProduct
+    {
+        ProductCategory = "Cameras",
+        ProductName = "Camera M25",
+        Price = 50.5m,
+        Stock = 5,
+        Image = "Camera 2",
+        Description = "Camera"
+    };
 }

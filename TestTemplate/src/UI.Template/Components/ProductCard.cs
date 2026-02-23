@@ -30,7 +30,7 @@ public class ProductCard(By locator) : BaseProductInfo(locator)
     /// <returns>A new instance of the <see cref="ProductDetailPage"/>.</returns>
     public ProductDetailPage OpenProductDetail()
     {
-        Name.Click();
+        Name.ScrollToAndClick();
         ProductDetailPage productDetailPage = new();
         productDetailPage.WaitForReady();
         return productDetailPage;
