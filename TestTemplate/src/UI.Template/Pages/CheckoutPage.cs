@@ -1,5 +1,6 @@
 using OpenQA.Selenium;
 using UI.Template.Components.Basic;
+using UI.Template.Models;
 
 namespace UI.Template.Pages;
 
@@ -38,7 +39,7 @@ public class CheckoutPage() : BasePage("/checkout")
         return base.IsReady() && _firstName.IsDisplayed();
     }
 
-    public void FillForm(Checkout data)
+    public void FillForm(Checkoutdata data)
     {
         _firstName.SendKeys(data.FirstName);
         _lastName.SendKeys(data.LastName);
