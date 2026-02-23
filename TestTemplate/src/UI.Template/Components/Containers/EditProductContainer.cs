@@ -43,11 +43,11 @@ public class EditProductContainer(By locator) : BaseComponent(locator)
     /// </summary>
     /// <param name="value">The price to set.</param>
     /// <returns>True if the price was set correctly, false otherwise.</returns>
-    public bool SetPrice(int value)
+    public bool SetPrice(decimal value)
     {
         Price.Clear();
         Price.SendKeys(value.ToString(CultureInfo.InvariantCulture));
-        return int.Parse(Price.GetValue(), CultureInfo.InvariantCulture) == value;
+        return decimal.Parse(Price.GetValue(), CultureInfo.InvariantCulture) == value;
     }
 
     /// <summary>
