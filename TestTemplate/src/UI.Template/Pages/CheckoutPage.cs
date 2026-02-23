@@ -31,8 +31,8 @@ public class CheckoutPage() : BasePage("/checkout")
     private readonly Simple _totalPrice = new(By.XPath("//*[contains(@class,'total-price') or contains(@class,'total-amount') or (contains(@class,'total') and not(contains(@class,'subtotal')))]//span[last()] | //span[contains(@class,'total-value')]"));
 
     // --- Buttons ---
-    private readonly Button _payButton = new(By.XPath("//button[normalize-space()='Pay']"));
-    private readonly Button _backToShopButton = new(By.XPath("//button[normalize-space()='Back to Shop']"));
+    private readonly Button _payButton = new(By.XPath("//button[@class='pay-button'] or //button[@id='pay-button']"));
+    private readonly Button _backToShopButton = new(By.XPath("//button[@class='back-to-shop-form']"));
 
     public override bool IsReady()
     {
@@ -70,6 +70,7 @@ public class CheckoutPage() : BasePage("/checkout")
     }
     public void Pay()
     {
+        Assert.That(_payButton.IsEnabled(), "Pay button is enabled.");
         _payButton.ScrollToAndClick();
     }
 
