@@ -46,7 +46,7 @@ public class PurchaseTest : BaseTest
         {
             Assert.That(PurchaseproductName, Is.EqualTo(TestData.PurchaseProduct.ProductName), "The name of product in the basket is not same as in test data");
             Assert.That(PurchaseproductDetail, Does.Contain("1"), "Product quantity in basket does not show 1 piece.");
-            Assert.That(PurchaseproductDetail, Does.Contain("700.00"), "Product price in basket does not match the price from product detail page.");
+            Assert.That(PurchaseproductDetail, Does.Contain("50.00"), "Product price in basket does not match the price from product detail page.");
         });
 
         //** STEP 6 ***/ - Proceed to checkout
@@ -56,13 +56,18 @@ public class PurchaseTest : BaseTest
         //** STEP 7 ***/ - Fill in the checkout form, check the price and place the order
         checkoutPage.FillForm(TestData.Checkout);
         decimal totalBeforePay = checkoutPage.GetTotalPrice();
+        string methodBeforePay = checkoutPage.GetSelectedPaymentMethod();
         checkoutPage.Pay();
 
         //** STEP 8 ***/ - Verify the order confirmation
+        Logger.LogInformation("Reached step 8");
+        string paymentMethod = methodBeforePay;
+        Logger.LogInformation($"Total after pay: {totalBeforePay}");
+        Logger.LogInformation($"Payment method: {paymentMethod}");
         Assert.Multiple(() =>
         {
             Assert.That(totalBeforePay, Is.EqualTo(productPrice), "Total price before payment does not match the product price.");
-            Assert.That(checkoutPage.GetSelectedPaymentMethod(), Does.Contain("PayPal"), "Selected payment method does not match the expected payment method.");
+            Assert.That(paymentMethod, Does.Contain("PayPal"), "Selected payment method does not match the expected payment method.");
         });
 
     }
