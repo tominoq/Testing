@@ -10,7 +10,7 @@ namespace UI.Template.Tests;
 public class AddProductTest : BaseTest
 {
     [Test]
-    public void AddNewProductToCart()
+    public void AddNewProductToCartTest()
     {
         //** STEP 1 ***/ - Open admin page
         AdminPage adminPage = new AdminPage();

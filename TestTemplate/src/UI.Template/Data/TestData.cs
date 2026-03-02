@@ -29,8 +29,10 @@ public static class TestData
 
     public static TestProduct PurchaseProduct { get; } = new TestProduct
     {
-        ProductCategory = "Cameras",
-        ProductName = "DSLR Camera X200",
+        /*ProductCategory = "Cameras",
+        ProductName = "DSLR Camera X200",*/
+        ProductCategory = "Accessories",
+        ProductName = "Gaming Keyboard RGB"
     };
 
     public static Checkoutdata Checkout { get; } = new Checkoutdata

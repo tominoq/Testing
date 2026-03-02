@@ -20,8 +20,8 @@ public class CheckoutPage() : BasePage("/checkout")
     private readonly TextInput _phoneNumber = new(By.XPath("//input[@placeholder='Enter your phone number']"));
 
     // --- Delivery and payment ---
-    private readonly DropDownList _deliveryMethod = new(By.XPath("//select[contains(@class,'delivery')]"));
-    private readonly DropDownList _paymentMethod = new(By.XPath("//select[contains(@class,'payment')]"));
+    private readonly DropDownList _deliveryMethod = new(By.XPath("//select[contains(@class,'deliveryMethod')]"));
+    private readonly DropDownList _paymentMethod = new(By.XPath("//select[contains(@id,'paymentMethod')]"));
 
     // --- Optional fields ---
     private readonly TextInput _specialOfferCode = new(By.XPath("//input[@placeholder='Enter your code']"));
@@ -31,7 +31,7 @@ public class CheckoutPage() : BasePage("/checkout")
     private readonly Simple _totalPrice = new(By.XPath("//*[contains(@class,'total-price') or contains(@class,'total-amount') or (contains(@class,'total') and not(contains(@class,'subtotal')))]//span[last()] | //span[contains(@class,'total-value')]"));
 
     // --- Buttons ---
-    private readonly Button _payButton = new(By.XPath("//button[@class='pay-button'] or //button[@id='pay-button']"));
+    private readonly Button _payButton = new(By.XPath("//button[@class='pay-button']"));
     private readonly Button _backToShopButton = new(By.XPath("//button[@class='back-to-shop-form']"));
 
     public override bool IsReady()
@@ -70,8 +70,10 @@ public class CheckoutPage() : BasePage("/checkout")
     }
     public void Pay()
     {
-        Assert.That(_payButton.IsEnabled(), "Pay button is enabled.");
-        _payButton.ScrollToAndClick();
+        Globals.JavaScriptExecutor.ExecuteScript("window.scrollBy(0, 600)");
+        Wait.Until(_ => _payButton.Element.GetAttribute("disabled") == null);
+        Assert.That(_payButton.IsDisplayed(), "Pay button is disabled.");
+        _payButton.Click();
     }
 
     public void BackToShop()
